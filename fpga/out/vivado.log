@@ -1,0 +1,49 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:23 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Wed Mar 21 15:45:02 2018
+# Process ID: 9628
+# Current directory: C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12296 C:\Users\kevin\Desktop\VHDL\pyrpl-master\pyrpl-master\pyrpl\fpga\out\post_synth.dcp
+# Log file: C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/vivado.log
+# Journal file: C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_checkpoint {C:\Users\kevin\Desktop\VHDL\pyrpl-master\pyrpl-master\pyrpl\fpga\out\post_synth.dcp}
+Command: open_checkpoint {C:\Users\kevin\Desktop\VHDL\pyrpl-master\pyrpl-master\pyrpl\fpga\out\post_synth.dcp}
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.207 . Memory (MB): peak = 647.723 ; gain = 0.000
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx2/Vivado/2016.4/data/ip'.
+INFO: [Netlist 29-17] Analyzing 1536 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2015.4
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Constraints 18-4397] Generator change detected checking ShapeConfig Enum. shapeDB will be regenerated.
+Parsing XDC File [C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/.Xil/Vivado-9628-kevin-portable/dcp/red_pitaya_top_board.xdc]
+Finished Parsing XDC File [C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/.Xil/Vivado-9628-kevin-portable/dcp/red_pitaya_top_board.xdc]
+Parsing XDC File [C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/.Xil/Vivado-9628-kevin-portable/dcp/red_pitaya_top_early.xdc]
+Finished Parsing XDC File [C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/.Xil/Vivado-9628-kevin-portable/dcp/red_pitaya_top_early.xdc]
+Parsing XDC File [C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/.Xil/Vivado-9628-kevin-portable/dcp/red_pitaya_top.xdc]
+Finished Parsing XDC File [C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/out/.Xil/Vivado-9628-kevin-portable/dcp/red_pitaya_top.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.514 . Memory (MB): peak = 1002.137 ; gain = 8.914
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.525 . Memory (MB): peak = 1002.137 ; gain = 8.914
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 22 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 6 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2015.4 (64-bit) build 1412921
+open_checkpoint: Time (s): cpu = 00:00:57 ; elapsed = 00:02:07 . Memory (MB): peak = 1121.430 ; gain = 476.449
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Mar 21 15:50:43 2018...
