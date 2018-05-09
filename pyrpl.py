@@ -320,7 +320,7 @@ class Pyrpl(object):
         """
         self.software_modules = []
         # software modules are Managers for various modules plus those defined in the config file
-        soft_mod_names = ['Asgs', 'Iqs', 'Pids', 'Scopes', 'Iirs', 'Trigs'
+        soft_mod_names = ['Asgs', 'Iqs', 'Pids','Hazes', 'Scopes', 'Iirs', #'Trigs'
                           ] + self.c.pyrpl.modules
         module_classes = [get_module(cls_name)
                           for cls_name in soft_mod_names]

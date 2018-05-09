@@ -62,22 +62,18 @@ defaultparameters = dict(
 
 
 class RedPitaya(object):
-    cls_modules = [rp.HK, rp.AMS, rp.Scope, rp.Sampler, rp.Asg0, rp.Asg1] + \
-                  [rp.Pwm] * 2 + [rp.Iq] * 3 + [rp.Pid] * 3 + [rp.Trig] + [ rp.IIR]
+    cls_modules = [rp.HK, rp.AMS, rp.Scope, rp.Sampler,  rp.Asg0, rp.Asg1] + \
+                   [rp.Pwm] * 2 + [rp.Iq] * 2 + [rp.Pid] * 2  + [rp.Haze] * 3#[rp.Trig] + [ rp.IIR]
 
     def __init__(self, config=None,  # configfile is needed to store parameters. None simulates one
                  **kwargs):
         """ this class provides the basic interface to the redpitaya board
-
         The constructor installs and starts the communication interface on the RedPitaya
         at 'hostname' that allows remote control and readout
-
         'config' is the config file or MemoryTree of the config file. All keyword arguments
         may be specified in the branch 'redpitaya' of this config file. Alternatively,
         they can be overwritten by keyword arguments at the function call.
-
         'config=None' specifies that no persistent config file is saved on the disc.
-
         Possible keyword arguments and their defaults are:
             hostname='192.168.1.100', # the ip or hostname of the board
             port=2222,  # port for PyRPL datacommunication
@@ -96,7 +92,6 @@ class RedPitaya(object):
             timeout=3,  # timeout in seconds for ssh communication
             monitor_server_name='monitor_server',  # name of the server program on redpitaya
             silence_env=False)  # suppress all environment variables that may override the configuration?
-
         if you are experiencing problems, try to increase delay, or try
         logging.getLogger().setLevel(logging.DEBUG)"""
         self.logger = logging.getLogger(name=__name__)
@@ -204,7 +199,6 @@ class RedPitaya(object):
     def start_ssh(self, attempt=0):
         """
         Extablishes an ssh connection to the RedPitaya board
-
         returns True if a successful connection has been established
         """
         try:
@@ -365,22 +359,22 @@ class RedPitaya(object):
             result = self.ssh.ask("./"+self.parameters['monitor_server_name']+" "+ str(self.parameters['port']))
             sleep(self.parameters['delay'])
             result += self.ssh.ask()
-            if not "sh" in result: 
+            if not "sh" in result:
                 self.logger.debug("Server application started on port %d",
                               self.parameters['port'])
                 return self.parameters['port']
             else: # means we tried the wrong binary version. make sure server is not running and try again with next file
                 self.endserver()
-        
+
         #try once more on a different port
         if self.parameters['port'] == self.parameters['defaultport']:
             self.parameters['port'] = random.randint(self.parameters['defaultport'],50000)
             self.logger.warning("Problems to start the server application. Trying again with a different port number %d",self.parameters['port'])
             return self.installserver()
-        
+
         self.logger.error("Server application could not be started. Try to recompile monitor_server on your RedPitaya (see manual). ")
         return None
-    
+
     def startserver(self):
         self.endserver()
         sleep(self.parameters['delay'])
@@ -397,7 +391,7 @@ class RedPitaya(object):
             return self.parameters['port']
         #something went wrong
         return self.installserver()
-    
+
     def endserver(self):
         try:
             self.ssh.ask('\x03') #exit running server application
@@ -409,7 +403,7 @@ class RedPitaya(object):
         # make sure no other monitor_server blocks the port
         self.ssh.ask('killall ' + self.parameters['monitor_server_name'])
         self._serverrunning = False
-        
+
     def endclient(self):
         del self.client
         self.client = None
