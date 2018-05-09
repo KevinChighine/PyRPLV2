@@ -6,6 +6,9 @@ from .base_module_widget import ModuleWidget
 from .schematics import MyLabel, MyImage, Connection, MyFrame, MyFrameDrawing
 
 from qtpy import QtCore, QtWidgets, QtGui
+from pyqtgraph.Qt import QtGui, QtCore
+import pyqtgraph as pg
+import numpy as np
 
 
 class ModuleManagerWidget(ModuleWidget):
@@ -63,6 +66,8 @@ class IirManagerWidget(ModuleManagerWidget):
 class IirManagerWidget(ModuleManagerWidget):
     pass
 
+class HazeManagerWidget(ModuleManagerWidget):
+    pass
 
 class IqManagerWidget(ModuleManagerWidget):
     def init_gui(self):

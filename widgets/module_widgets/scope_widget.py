@@ -88,6 +88,7 @@ class ScopeWidget(AcquisitionModuleWidget):
         self.plot_item.showGrid(y=True, alpha=1.)
 
 
+
         #self.button_single = QtWidgets.QPushButton("Run single")
         #self.button_continuous = QtWidgets.QPushButton("Run continuous")
         #self.button_save = QtWidgets.QPushButton("Save curve")

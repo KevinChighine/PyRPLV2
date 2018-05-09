@@ -6,9 +6,10 @@ from .base_module_widget import ReducedModuleWidget, ModuleWidget
 from .asg_widget import AsgWidget
 from .iir_widget import IirWidget
 from .iq_widget import IqWidget
+from .haze_widget import HazeWidget
 from .lockbox_widget import LockboxWidget, OutputSignalWidget, InputsWidget, \
                             LockboxInputWidget, LockboxSequenceWidget, LockboxStageWidget, StageOutputWidget
-from .module_manager_widget import ModuleManagerWidget, IqManagerWidget, PidManagerWidget, ScopeManagerWidget, \
+from .module_manager_widget import ModuleManagerWidget, IqManagerWidget, HazeManagerWidget, PidManagerWidget, ScopeManagerWidget, \
                                     IirManagerWidget, AsgManagerWidget
 from .na_widget import NaWidget
 from .pid_widget import PidWidget
