@@ -108,8 +108,6 @@ localparam LOG_MODULES = 4;// ceil(log2(EXTRAINPUTS+EXTRAOUTPUTS+MODULES))
 //Module numbers
 localparam PID0  = 'd0; //formerly PID11
 localparam PID1  = 'd1; //formerly PID12: input2->output1
-//localparam PID2  = 'd2; //formerly PID21: input1->output2
-//localparam PID2  = 'd3; //formerly PID22
 localparam HAZE0 = 'd2; //formerly PID22
 localparam HAZE1 = 'd3; //formerly PID22
 localparam HAZE2 = 'd4; //formerly PID22
@@ -259,7 +257,6 @@ always @(posedge clk_i) begin
       input_select [PID1] <= ADC1;
       output_select[PID1] <= OFF;
 
-
       input_select [HAZE0] <= ADC1;
       output_select[HAZE0] <= OFF;
 
@@ -324,7 +321,7 @@ end
  *********************************************/
 
 //PID
-generate for (j = 0; j < 1; j = j+1) begin
+generate for (j = 0; j < 2; j = j+1) begin
    red_pitaya_pid_block i_pid (
      // data
      .clk_i        (  clk_i          ),  // clock
@@ -346,7 +343,7 @@ end endgenerate
 
 
 // HAZE with two inputs, but only one module -> leaving out j=4 in module number, since its slots are connected to haze at j=3
-generate for (j = 2; j < 6; j = j+1) begin
+generate for (j = 2; j < 5; j = j+1) begin
     red_pitaya_haze_block i_haze
       (
          // data

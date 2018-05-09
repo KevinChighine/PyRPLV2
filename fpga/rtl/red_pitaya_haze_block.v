@@ -41,7 +41,7 @@
 module red_pitaya_haze_block #(
     //parameters for gain control (binary points and total bitwidth)
    parameter     PSR = 12         ,
-
+   parameter     ISR = 12         ,//official redpitaya: 18
 
    parameter     GAINBITS = 24    ,
    parameter     FILTERMINBW = 10,
@@ -54,8 +54,9 @@ module red_pitaya_haze_block #(
    input                 clk_i           ,  // clock
    input                 rstn_i          ,  // reset - active low
    input      [ 14-1: 0] dat_i           ,  // input data
+   input      [ 14-1: 0] adc_a_i         ,  // ADC data CHA
+   input      [ 14-1: 0] adc_b_i         ,  // ADC data CHB
    output     [ 14-1: 0] dat_o           ,  // output data
-
 
 
    // communication with PS
@@ -68,6 +69,7 @@ module red_pitaya_haze_block #(
 );
 
 reg [ GAINBITS-1: 0] set_kp;
+reg [ GAINBITS-1: 0] set_kp2;
 
 //  System bus connection
 always @(posedge clk_i) begin
@@ -82,6 +84,7 @@ always @(posedge clk_i) begin
 	  casez (addr)
 	     16'h108 : begin ack <= wen|ren; rdata <= {{32-GAINBITS{1'b0}},set_kp}; end
 	     16'h200 : begin ack <= wen|ren; rdata <= PSR; end
+	     16'h204 : begin ack <= wen|ren; rdata <= ISR; end
 	     16'h20C : begin ack <= wen|ren; rdata <= GAINBITS; end
 	     16'h228 : begin ack <= wen|ren; rdata <= FILTERMINBW; end
 
@@ -105,7 +108,7 @@ end
 
 assign kp_mult1 = $signed(dat_i) * $signed(set_kp);
 
-assign dat_o = kp_reg;
+assign dat_o = kp_mult1;
 
 
 
