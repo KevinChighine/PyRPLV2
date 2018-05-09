@@ -2,12 +2,12 @@
 # Webtalk v2015.4 (64-bit)
 # SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
 # IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Thu May 03 11:24:50 2018
-# Process ID: 14200
-# Current directory: c:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga
-# Command line: wbtcv.exe -mode batch -source C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/.Xil/Vivado-14800-kevin-portable/webtalk/labtool_webtalk.tcl -notrace
-# Log file: c:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/webtalk.log
-# Journal file: c:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga\webtalk.jou
+# Start of session at: Wed May 09 15:13:59 2018
+# Process ID: 4952
+# Current directory: c:/Users/HQNOM/AppData/Local/Continuum/anaconda3/Lib/site-packages/pyrpl/fpga
+# Command line: wbtcv.exe -mode batch -source C:/Users/HQNOM/AppData/Local/Continuum/anaconda3/Lib/site-packages/pyrpl/fpga/.Xil/Vivado-2380-Win-rohr/webtalk/labtool_webtalk.tcl -notrace
+# Log file: c:/Users/HQNOM/AppData/Local/Continuum/anaconda3/Lib/site-packages/pyrpl/fpga/webtalk.log
+# Journal file: c:/Users/HQNOM/AppData/Local/Continuum/anaconda3/Lib/site-packages/pyrpl/fpga\webtalk.jou
 #-----------------------------------------------------------
-source C:/Users/kevin/Desktop/VHDL/pyrpl-master/pyrpl-master/pyrpl/fpga/.Xil/Vivado-14800-kevin-portable/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Thu May 03 11:24:53 2018...
+source C:/Users/HQNOM/AppData/Local/Continuum/anaconda3/Lib/site-packages/pyrpl/fpga/.Xil/Vivado-2380-Win-rohr/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed May 09 15:13:59 2018...

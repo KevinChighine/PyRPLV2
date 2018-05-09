@@ -1,8 +1,8 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
-| Date         : Sun May 06 21:57:15 2018
-| Host         : kevin-portable running 64-bit major release  (build 9200)
+| Date         : Wed May 09 15:24:17 2018
+| Host         : Win-rohr running 64-bit Service Pack 1  (build 7601)
 | Command      : report_timing_summary -file out/post_synth_timing_summary.rpt
 | Design       : red_pitaya_top
 | Device       : 7z010-clg400
@@ -100,7 +100,7 @@ Table of Contents
 
 9. checking loops
 -----------------
- There are 0 combinational loops in the design.
+ There are 940 combinational loops in the design. (HIGH)
 
 
 10. checking partial_input_delay
@@ -126,7 +126,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-     -4.175     -346.534                    235                20732       -0.089       -7.125                    107                20732        1.000        0.000                       0                  8219  
+   -264.750  -113883.820                    741                21998       -0.089       -7.126                    107                21998        1.000        0.000                       0                  8754  
 
 
 Timing constraints are not met.
@@ -163,7 +163,7 @@ Clock                 WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total End
 -----                 -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
 adc_clk                                                                                                                                                             2.000        0.000                       0                     1  
   clk_fb                                                                                                                                                            6.751        0.000                       0                     2  
-  pll_adc_clk          -4.175     -337.125                    211                18203        0.074        0.000                      0                18203        2.750        0.000                       0                  6953  
+  pll_adc_clk        -264.750  -113874.406                    717                19469        0.074        0.000                      0                19469        2.750        0.000                       0                  7488  
   pll_dac_clk_1x        1.521        0.000                      0                   45       -0.089       -1.333                     15                   45        3.500        0.000                       0                    47  
   pll_dac_clk_2p                                                                                                                                                    1.845        0.000                       0                     3  
   pll_dac_clk_2x                                                                                                                                                    1.845        0.000                       0                     3  
@@ -183,7 +183,7 @@ clk_fpga_3             -0.672       -7.546                     20               
 From Clock      To Clock            WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
 ----------      --------            -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
 adc_clk         pll_adc_clk           5.085        0.000                      0                   28        0.490        0.000                      0                   28  
-pll_adc_clk     pll_dac_clk_1x        5.305        0.000                      0                   28       -0.027       -0.054                      2                   28  
+pll_adc_clk     pll_dac_clk_1x        5.306        0.000                      0                   28       -0.027       -0.054                      2                   28  
 pll_adc_clk     pll_pwm_clk           2.077        0.000                      0                   94       -0.071       -5.739                     90                   94  
 
 
@@ -254,7 +254,7 @@ Max Period  n/a     PLLE2_ADV/CLKFBIN   n/a            52.633        8.000      
 From Clock:  pll_adc_clk
   To Clock:  pll_adc_clk
 
-Setup :          211  Failing Endpoints,  Worst Slack       -4.175ns,  Total Violation     -337.125ns
+Setup :          717  Failing Endpoints,  Worst Slack     -264.750ns,  Total Violation  -113874.405ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.074ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        2.750ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -262,16 +262,16 @@ PW    :            0  Failing Endpoints,  Worst Slack        2.750ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (VIOLATED) :        -4.175ns  (required time - arrival time)
-  Source:                 i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[0].lpf/y_reg[47]/C
+Slack (VIOLATED) :        -264.750ns  (required time - arrival time)
+  Source:                 i_dsp/sum1_reg[9]/C
                             (rising edge-triggered cell FDRE clocked by pll_adc_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            i_dsp/genblk5[7].iq_2_outputs/modulator/secondproduct1/D[0]
-                            (rising edge-triggered cell DSP48E1 clocked by pll_adc_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[15]/D
+                            (rising edge-triggered cell FDRE clocked by pll_adc_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             pll_adc_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (pll_adc_clk rise@8.000ns - pll_adc_clk rise@0.000ns)
-  Data Path Delay:        10.336ns  (logic 5.212ns (50.428%)  route 5.124ns (49.572%))
-  Logic Levels:           7  (DSP48E1=1 LUT5=4 LUT6=2)
+  Data Path Delay:        272.295ns  (logic 175.434ns (64.428%)  route 96.861ns (35.572%))
+  Logic Levels:           137  (CARRY4=2 DSP48E1=42 LUT2=1 LUT3=4 LUT5=42 LUT6=41 MUXF7=4 MUXF8=1)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    2.969ns = ( 10.969 - 8.000 ) 
     Source Clock Delay      (SCD):    3.357ns
@@ -293,27 +293,330 @@ Slack (VIOLATED) :        -4.175ns  (required time - arrival time)
                                                       0.089     1.656 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.800     2.456    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.101     2.557 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.800     3.357    i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[0].lpf/clk_i
-                         FDRE                                         r  i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[0].lpf/y_reg[47]/C
+                         net (fo=7498, unplaced)      0.800     3.357    i_dsp/clk_i
+                         FDRE                                         r  i_dsp/sum1_reg[9]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.456     3.813 r  i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[0].lpf/y_reg[47]/Q
-                         net (fo=3, unplaced)         0.824     4.637    i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[0].lpf/y_out[23]
-                         LUT5 (Prop_lut5_I0_O)        0.295     4.932 r  i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[0].lpf/signal_o[23]_INST_0/O
-                         net (fo=3, unplaced)         0.467     5.399    i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[1].lpf/signal_i[23]
-                         LUT5 (Prop_lut5_I1_O)        0.124     5.523 r  i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[1].lpf/signal_o[23]_INST_0/O
-                         net (fo=3, unplaced)         0.467     5.990    i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[2].lpf/signal_i[23]
-                         LUT5 (Prop_lut5_I1_O)        0.124     6.114 r  i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[2].lpf/signal_o[23]_INST_0/O
-                         net (fo=3, unplaced)         0.467     6.581    i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[3].lpf/signal_i[23]
-                         LUT5 (Prop_lut5_I1_O)        0.124     6.705 r  i_dsp/genblk5[7].iq_2_outputs/iqfilter[1]/genblk2[3].lpf/signal_o[23]_INST_0/O
-                         net (fo=91, unplaced)        0.800     7.505    i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct_saturation[0]/factor1_i[23]
-                         DSP48E1 (Prop_dsp48e1_A[29]_P[38])
-                                                      3.841    11.346 r  i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct_saturation[0]/product/P[38]
-                         net (fo=2, unplaced)         0.800    12.146    i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct_saturation[0]/p_0_in[5]
-                         LUT6 (Prop_lut6_I5_O)        0.124    12.270 r  i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct_saturation[0]/product_o[12]_INST_0_i_2/O
-                         net (fo=13, unplaced)        0.499    12.769    i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct_saturation[0]/product_o[12]_INST_0_i_2_n_0
-                         LUT6 (Prop_lut6_I3_O)        0.124    12.893 r  i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct_saturation[0]/product_o[0]_INST_0/O
-                         net (fo=1, unplaced)         0.800    13.692    i_dsp/genblk5[7].iq_2_outputs/modulator/firstproduct1[0]
-                         DSP48E1                                      r  i_dsp/genblk5[7].iq_2_outputs/modulator/secondproduct1/D[0]
+                         FDRE (Prop_fdre_C_Q)         0.456     3.813 r  i_dsp/sum1_reg[9]/Q
+                         net (fo=1, unplaced)         0.965     4.778    i_dsp/dac_saturate[0]/input_i[9]
+                         LUT6 (Prop_lut6_I0_O)        0.295     5.073 r  i_dsp/dac_saturate[0]/output_o[9]_INST_0/O
+                         net (fo=13, unplaced)        0.499     5.572    dac_a[9]
+                         LUT3 (Prop_lut3_I0_O)        0.118     5.690 r  i_dsp_i_5/O
+                         net (fo=11, unplaced)        0.495     6.185    i_dsp/dat_a_i[9]
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.309 r  i_dsp/genblk2[2].i_haze_i_36/O
+                         net (fo=1, unplaced)         0.449     6.758    i_dsp/genblk2[2].i_haze_i_36_n_0
+                         LUT6 (Prop_lut6_I4_O)        0.124     6.882 r  i_dsp/genblk2[2].i_haze_i_5/O
+                         net (fo=1, unplaced)         0.800     7.682    i_dsp/genblk2[2].i_haze/dat_i[9]
+                         DSP48E1 (Prop_dsp48e1_A[9]_P[0])
+                                                      3.841    11.523 r  i_dsp/genblk2[2].i_haze/kp_mult/P[0]
+                         net (fo=13, unplaced)        0.800    12.323    i_dsp/output_direct[2][0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    12.447 r  i_dsp/genblk2[2].i_haze_i_69/O
+                         net (fo=1, unplaced)         0.665    13.112    i_dsp/genblk2[2].i_haze_i_69_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    13.236 r  i_dsp/genblk2[2].i_haze_i_14/O
+                         net (fo=1, unplaced)         0.800    14.035    i_dsp/genblk2[2].i_haze/dat_i[0]
+                         DSP48E1 (Prop_dsp48e1_A[0]_P[1])
+                                                      3.841    17.876 r  i_dsp/genblk2[2].i_haze/kp_mult/P[1]
+                         net (fo=13, unplaced)        0.800    18.676    i_dsp/output_direct[2][1]
+                         LUT5 (Prop_lut5_I0_O)        0.124    18.800 r  i_dsp/genblk2[2].i_haze_i_65/O
+                         net (fo=1, unplaced)         0.665    19.465    i_dsp/genblk2[2].i_haze_i_65_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    19.589 r  i_dsp/genblk2[2].i_haze_i_13/O
+                         net (fo=1, unplaced)         0.800    20.389    i_dsp/genblk2[2].i_haze/dat_i[1]
+                         DSP48E1 (Prop_dsp48e1_A[1]_P[2])
+                                                      3.841    24.230 r  i_dsp/genblk2[2].i_haze/kp_mult/P[2]
+                         net (fo=15, unplaced)        0.800    25.030    i_dsp/output_direct[2][2]
+                         LUT5 (Prop_lut5_I0_O)        0.124    25.154 r  i_dsp/genblk2[2].i_haze_i_61/O
+                         net (fo=1, unplaced)         0.665    25.819    i_dsp/genblk2[2].i_haze_i_61_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    25.943 r  i_dsp/genblk2[2].i_haze_i_12/O
+                         net (fo=1, unplaced)         0.800    26.743    i_dsp/genblk2[2].i_haze/dat_i[2]
+                         DSP48E1 (Prop_dsp48e1_A[2]_P[3])
+                                                      3.841    30.584 r  i_dsp/genblk2[2].i_haze/kp_mult/P[3]
+                         net (fo=15, unplaced)        0.800    31.384    i_dsp/output_direct[2][3]
+                         LUT5 (Prop_lut5_I0_O)        0.124    31.508 r  i_dsp/genblk2[2].i_haze_i_57/O
+                         net (fo=1, unplaced)         0.665    32.173    i_dsp/genblk2[2].i_haze_i_57_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    32.297 r  i_dsp/genblk2[2].i_haze_i_11/O
+                         net (fo=1, unplaced)         0.800    33.097    i_dsp/genblk2[2].i_haze/dat_i[3]
+                         DSP48E1 (Prop_dsp48e1_A[3]_P[4])
+                                                      3.841    36.938 r  i_dsp/genblk2[2].i_haze/kp_mult/P[4]
+                         net (fo=15, unplaced)        0.800    37.737    i_dsp/output_direct[2][4]
+                         LUT5 (Prop_lut5_I0_O)        0.124    37.861 r  i_dsp/genblk2[2].i_haze_i_53/O
+                         net (fo=1, unplaced)         0.665    38.526    i_dsp/genblk2[2].i_haze_i_53_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    38.650 r  i_dsp/genblk2[2].i_haze_i_10/O
+                         net (fo=1, unplaced)         0.800    39.450    i_dsp/genblk2[2].i_haze/dat_i[4]
+                         DSP48E1 (Prop_dsp48e1_A[4]_P[5])
+                                                      3.841    43.291 r  i_dsp/genblk2[2].i_haze/kp_mult/P[5]
+                         net (fo=15, unplaced)        0.800    44.091    i_dsp/output_direct[2][5]
+                         LUT5 (Prop_lut5_I0_O)        0.124    44.215 r  i_dsp/genblk2[2].i_haze_i_49/O
+                         net (fo=1, unplaced)         0.665    44.880    i_dsp/genblk2[2].i_haze_i_49_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    45.004 r  i_dsp/genblk2[2].i_haze_i_9/O
+                         net (fo=1, unplaced)         0.800    45.804    i_dsp/genblk2[2].i_haze/dat_i[5]
+                         DSP48E1 (Prop_dsp48e1_A[5]_P[6])
+                                                      3.841    49.645 r  i_dsp/genblk2[2].i_haze/kp_mult/P[6]
+                         net (fo=15, unplaced)        0.800    50.445    i_dsp/output_direct[2][6]
+                         LUT5 (Prop_lut5_I0_O)        0.124    50.569 r  i_dsp/genblk2[2].i_haze_i_45/O
+                         net (fo=1, unplaced)         0.665    51.234    i_dsp/genblk2[2].i_haze_i_45_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    51.358 r  i_dsp/genblk2[2].i_haze_i_8/O
+                         net (fo=1, unplaced)         0.800    52.158    i_dsp/genblk2[2].i_haze/dat_i[6]
+                         DSP48E1 (Prop_dsp48e1_A[6]_P[7])
+                                                      3.841    55.999 r  i_dsp/genblk2[2].i_haze/kp_mult/P[7]
+                         net (fo=15, unplaced)        0.800    56.799    i_dsp/output_direct[2][7]
+                         LUT5 (Prop_lut5_I0_O)        0.124    56.923 r  i_dsp/genblk2[2].i_haze_i_41/O
+                         net (fo=1, unplaced)         0.665    57.588    i_dsp/genblk2[2].i_haze_i_41_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    57.712 r  i_dsp/genblk2[2].i_haze_i_7/O
+                         net (fo=1, unplaced)         0.800    58.511    i_dsp/genblk2[2].i_haze/dat_i[7]
+                         DSP48E1 (Prop_dsp48e1_A[7]_P[8])
+                                                      3.841    62.352 r  i_dsp/genblk2[2].i_haze/kp_mult/P[8]
+                         net (fo=15, unplaced)        0.800    63.152    i_dsp/output_direct[2][8]
+                         LUT5 (Prop_lut5_I0_O)        0.124    63.276 r  i_dsp/genblk2[2].i_haze_i_37/O
+                         net (fo=1, unplaced)         0.665    63.941    i_dsp/genblk2[2].i_haze_i_37_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    64.065 r  i_dsp/genblk2[2].i_haze_i_6/O
+                         net (fo=1, unplaced)         0.800    64.865    i_dsp/genblk2[2].i_haze/dat_i[8]
+                         DSP48E1 (Prop_dsp48e1_A[8]_P[9])
+                                                      3.841    68.706 r  i_dsp/genblk2[2].i_haze/kp_mult/P[9]
+                         net (fo=15, unplaced)        0.800    69.506    i_dsp/output_direct[2][9]
+                         LUT5 (Prop_lut5_I0_O)        0.124    69.630 r  i_dsp/genblk2[1].i_haze_i_31/O
+                         net (fo=1, unplaced)         0.665    70.295    i_dsp/genblk2[1].i_haze_i_31_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    70.419 r  i_dsp/genblk2[1].i_haze_i_5/O
+                         net (fo=1, unplaced)         0.800    71.219    i_dsp/genblk2[1].i_haze/dat_i[9]
+                         DSP48E1 (Prop_dsp48e1_A[9]_P[0])
+                                                      3.841    75.060 r  i_dsp/genblk2[1].i_haze/kp_mult/P[0]
+                         net (fo=11, unplaced)        0.800    75.860    i_dsp/output_direct[1][0]
+                         LUT5 (Prop_lut5_I2_O)        0.124    75.984 r  i_dsp/genblk2[1].i_haze_i_65/O
+                         net (fo=1, unplaced)         0.665    76.649    i_dsp/genblk2[1].i_haze_i_65_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    76.773 r  i_dsp/genblk2[1].i_haze_i_14/O
+                         net (fo=1, unplaced)         0.800    77.573    i_dsp/genblk2[1].i_haze/dat_i[0]
+                         DSP48E1 (Prop_dsp48e1_A[0]_P[1])
+                                                      3.841    81.414 r  i_dsp/genblk2[1].i_haze/kp_mult/P[1]
+                         net (fo=11, unplaced)        0.800    82.213    i_dsp/output_direct[1][1]
+                         LUT5 (Prop_lut5_I2_O)        0.124    82.337 r  i_dsp/genblk2[1].i_haze_i_61/O
+                         net (fo=1, unplaced)         0.665    83.002    i_dsp/genblk2[1].i_haze_i_61_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    83.126 r  i_dsp/genblk2[1].i_haze_i_13/O
+                         net (fo=1, unplaced)         0.800    83.926    i_dsp/genblk2[1].i_haze/dat_i[1]
+                         DSP48E1 (Prop_dsp48e1_A[1]_P[2])
+                                                      3.841    87.767 r  i_dsp/genblk2[1].i_haze/kp_mult/P[2]
+                         net (fo=13, unplaced)        0.800    88.567    i_dsp/output_direct[1][2]
+                         LUT5 (Prop_lut5_I2_O)        0.124    88.691 r  i_dsp/genblk2[1].i_haze_i_57/O
+                         net (fo=1, unplaced)         0.665    89.356    i_dsp/genblk2[1].i_haze_i_57_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    89.480 r  i_dsp/genblk2[1].i_haze_i_12/O
+                         net (fo=1, unplaced)         0.800    90.280    i_dsp/genblk2[1].i_haze/dat_i[2]
+                         DSP48E1 (Prop_dsp48e1_A[2]_P[3])
+                                                      3.841    94.121 r  i_dsp/genblk2[1].i_haze/kp_mult/P[3]
+                         net (fo=13, unplaced)        0.800    94.921    i_dsp/output_direct[1][3]
+                         LUT5 (Prop_lut5_I2_O)        0.124    95.045 r  i_dsp/genblk2[1].i_haze_i_73/O
+                         net (fo=1, unplaced)         0.000    95.045    i_dsp/genblk2[1].i_haze_i_73_n_0
+                         MUXF7 (Prop_muxf7_I0_O)      0.238    95.283 r  i_dsp/genblk2[1].i_haze_i_55/O
+                         net (fo=1, unplaced)         0.422    95.705    i_dsp/genblk2[1].i_haze_i_55_n_0
+                         LUT3 (Prop_lut3_I1_O)        0.298    96.003 r  i_dsp/genblk2[1].i_haze_i_11/O
+                         net (fo=1, unplaced)         0.800    96.803    i_dsp/genblk2[1].i_haze/dat_i[3]
+                         DSP48E1 (Prop_dsp48e1_A[3]_P[4])
+                                                      3.841   100.644 r  i_dsp/genblk2[1].i_haze/kp_mult/P[4]
+                         net (fo=13, unplaced)        0.800   101.444    i_dsp/output_direct[1][4]
+                         LUT5 (Prop_lut5_I2_O)        0.124   101.568 r  i_dsp/genblk2[1].i_haze_i_51/O
+                         net (fo=1, unplaced)         0.665   102.233    i_dsp/genblk2[1].i_haze_i_51_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   102.357 r  i_dsp/genblk2[1].i_haze_i_10/O
+                         net (fo=1, unplaced)         0.800   103.156    i_dsp/genblk2[1].i_haze/dat_i[4]
+                         DSP48E1 (Prop_dsp48e1_A[4]_P[5])
+                                                      3.841   106.997 r  i_dsp/genblk2[1].i_haze/kp_mult/P[5]
+                         net (fo=13, unplaced)        0.800   107.797    i_dsp/output_direct[1][5]
+                         LUT5 (Prop_lut5_I2_O)        0.124   107.921 r  i_dsp/genblk2[1].i_haze_i_47/O
+                         net (fo=1, unplaced)         0.665   108.586    i_dsp/genblk2[1].i_haze_i_47_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   108.710 r  i_dsp/genblk2[1].i_haze_i_9/O
+                         net (fo=1, unplaced)         0.800   109.510    i_dsp/genblk2[1].i_haze/dat_i[5]
+                         DSP48E1 (Prop_dsp48e1_A[5]_P[6])
+                                                      3.841   113.351 r  i_dsp/genblk2[1].i_haze/kp_mult/P[6]
+                         net (fo=13, unplaced)        0.800   114.151    i_dsp/output_direct[1][6]
+                         LUT5 (Prop_lut5_I2_O)        0.124   114.275 r  i_dsp/genblk2[1].i_haze_i_43/O
+                         net (fo=1, unplaced)         0.665   114.940    i_dsp/genblk2[1].i_haze_i_43_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   115.064 r  i_dsp/genblk2[1].i_haze_i_8/O
+                         net (fo=1, unplaced)         0.800   115.864    i_dsp/genblk2[1].i_haze/dat_i[6]
+                         DSP48E1 (Prop_dsp48e1_A[6]_P[7])
+                                                      3.841   119.705 r  i_dsp/genblk2[1].i_haze/kp_mult/P[7]
+                         net (fo=13, unplaced)        0.800   120.505    i_dsp/output_direct[1][7]
+                         LUT5 (Prop_lut5_I2_O)        0.124   120.629 r  i_dsp/genblk2[1].i_haze_i_39/O
+                         net (fo=1, unplaced)         0.665   121.294    i_dsp/genblk2[1].i_haze_i_39_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   121.418 r  i_dsp/genblk2[1].i_haze_i_7/O
+                         net (fo=1, unplaced)         0.800   122.218    i_dsp/genblk2[1].i_haze/dat_i[7]
+                         DSP48E1 (Prop_dsp48e1_A[7]_P[8])
+                                                      3.841   126.059 r  i_dsp/genblk2[1].i_haze/kp_mult/P[8]
+                         net (fo=13, unplaced)        0.800   126.858    i_dsp/output_direct[1][8]
+                         LUT5 (Prop_lut5_I2_O)        0.124   126.982 r  i_dsp/genblk2[1].i_haze_i_35/O
+                         net (fo=1, unplaced)         0.665   127.647    i_dsp/genblk2[1].i_haze_i_35_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   127.771 r  i_dsp/genblk2[1].i_haze_i_6/O
+                         net (fo=1, unplaced)         0.800   128.571    i_dsp/genblk2[1].i_haze/dat_i[8]
+                         DSP48E1 (Prop_dsp48e1_A[8]_P[9])
+                                                      3.841   132.412 r  i_dsp/genblk2[1].i_haze/kp_mult/P[9]
+                         net (fo=13, unplaced)        0.800   133.212    i_dsp/output_direct[1][9]
+                         LUT5 (Prop_lut5_I2_O)        0.124   133.336 r  i_dsp/genblk2[0].i_haze_i_71/O
+                         net (fo=1, unplaced)         0.000   133.336    i_dsp/genblk2[0].i_haze_i_71_n_0
+                         MUXF7 (Prop_muxf7_I0_O)      0.238   133.574 r  i_dsp/genblk2[0].i_haze_i_33/O
+                         net (fo=1, unplaced)         0.422   133.996    i_dsp/genblk2[0].i_haze_i_33_n_0
+                         LUT3 (Prop_lut3_I1_O)        0.298   134.294 r  i_dsp/genblk2[0].i_haze_i_5/O
+                         net (fo=1, unplaced)         0.800   135.094    i_dsp/genblk2[0].i_haze/dat_i[9]
+                         DSP48E1 (Prop_dsp48e1_A[9]_P[0])
+                                                      3.841   138.935 r  i_dsp/genblk2[0].i_haze/kp_mult/P[0]
+                         net (fo=13, unplaced)        0.800   139.735    i_dsp/output_direct[0][0]
+                         LUT5 (Prop_lut5_I4_O)        0.124   139.859 r  i_dsp/genblk2[0].i_haze_i_67/O
+                         net (fo=1, unplaced)         0.665   140.524    i_dsp/genblk2[0].i_haze_i_67_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   140.648 r  i_dsp/genblk2[0].i_haze_i_14/O
+                         net (fo=1, unplaced)         0.800   141.448    i_dsp/genblk2[0].i_haze/dat_i[0]
+                         DSP48E1 (Prop_dsp48e1_A[0]_P[1])
+                                                      3.841   145.289 r  i_dsp/genblk2[0].i_haze/kp_mult/P[1]
+                         net (fo=13, unplaced)        0.800   146.089    i_dsp/output_direct[0][1]
+                         LUT5 (Prop_lut5_I4_O)        0.124   146.213 r  i_dsp/genblk2[0].i_haze_i_63/O
+                         net (fo=1, unplaced)         0.665   146.878    i_dsp/genblk2[0].i_haze_i_63_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   147.002 r  i_dsp/genblk2[0].i_haze_i_13/O
+                         net (fo=1, unplaced)         0.800   147.801    i_dsp/genblk2[0].i_haze/dat_i[1]
+                         DSP48E1 (Prop_dsp48e1_A[1]_P[2])
+                                                      3.841   151.642 r  i_dsp/genblk2[0].i_haze/kp_mult/P[2]
+                         net (fo=15, unplaced)        0.800   152.442    i_dsp/output_direct[0][2]
+                         LUT5 (Prop_lut5_I4_O)        0.124   152.566 r  i_dsp/genblk2[0].i_haze_i_59/O
+                         net (fo=1, unplaced)         0.665   153.231    i_dsp/genblk2[0].i_haze_i_59_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   153.355 r  i_dsp/genblk2[0].i_haze_i_12/O
+                         net (fo=1, unplaced)         0.800   154.155    i_dsp/genblk2[0].i_haze/dat_i[2]
+                         DSP48E1 (Prop_dsp48e1_A[2]_P[3])
+                                                      3.841   157.996 r  i_dsp/genblk2[0].i_haze/kp_mult/P[3]
+                         net (fo=15, unplaced)        0.800   158.796    i_dsp/output_direct[0][3]
+                         LUT5 (Prop_lut5_I4_O)        0.124   158.920 r  i_dsp/genblk2[0].i_haze_i_55/O
+                         net (fo=1, unplaced)         0.665   159.585    i_dsp/genblk2[0].i_haze_i_55_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   159.709 r  i_dsp/genblk2[0].i_haze_i_11/O
+                         net (fo=1, unplaced)         0.800   160.509    i_dsp/genblk2[0].i_haze/dat_i[3]
+                         DSP48E1 (Prop_dsp48e1_A[3]_P[4])
+                                                      3.841   164.350 r  i_dsp/genblk2[0].i_haze/kp_mult/P[4]
+                         net (fo=15, unplaced)        0.800   165.150    i_dsp/output_direct[0][4]
+                         LUT5 (Prop_lut5_I4_O)        0.124   165.274 r  i_dsp/genblk2[0].i_haze_i_51/O
+                         net (fo=1, unplaced)         0.665   165.939    i_dsp/genblk2[0].i_haze_i_51_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   166.063 r  i_dsp/genblk2[0].i_haze_i_10/O
+                         net (fo=1, unplaced)         0.800   166.862    i_dsp/genblk2[0].i_haze/dat_i[4]
+                         DSP48E1 (Prop_dsp48e1_A[4]_P[5])
+                                                      3.841   170.703 r  i_dsp/genblk2[0].i_haze/kp_mult/P[5]
+                         net (fo=15, unplaced)        0.800   171.503    i_dsp/output_direct[0][5]
+                         LUT5 (Prop_lut5_I4_O)        0.124   171.627 r  i_dsp/genblk2[0].i_haze_i_47/O
+                         net (fo=1, unplaced)         0.665   172.292    i_dsp/genblk2[0].i_haze_i_47_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   172.416 r  i_dsp/genblk2[0].i_haze_i_9/O
+                         net (fo=1, unplaced)         0.800   173.216    i_dsp/genblk2[0].i_haze/dat_i[5]
+                         DSP48E1 (Prop_dsp48e1_A[5]_P[6])
+                                                      3.841   177.057 r  i_dsp/genblk2[0].i_haze/kp_mult/P[6]
+                         net (fo=15, unplaced)        0.800   177.857    i_dsp/output_direct[0][6]
+                         LUT5 (Prop_lut5_I4_O)        0.124   177.981 r  i_dsp/genblk2[0].i_haze_i_43/O
+                         net (fo=1, unplaced)         0.665   178.646    i_dsp/genblk2[0].i_haze_i_43_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   178.770 r  i_dsp/genblk2[0].i_haze_i_8/O
+                         net (fo=1, unplaced)         0.800   179.570    i_dsp/genblk2[0].i_haze/dat_i[6]
+                         DSP48E1 (Prop_dsp48e1_A[6]_P[7])
+                                                      3.841   183.411 r  i_dsp/genblk2[0].i_haze/kp_mult/P[7]
+                         net (fo=15, unplaced)        0.800   184.211    i_dsp/output_direct[0][7]
+                         LUT5 (Prop_lut5_I4_O)        0.124   184.335 r  i_dsp/genblk2[0].i_haze_i_39/O
+                         net (fo=1, unplaced)         0.665   185.000    i_dsp/genblk2[0].i_haze_i_39_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   185.124 r  i_dsp/genblk2[0].i_haze_i_7/O
+                         net (fo=1, unplaced)         0.800   185.924    i_dsp/genblk2[0].i_haze/dat_i[7]
+                         DSP48E1 (Prop_dsp48e1_A[7]_P[8])
+                                                      3.841   189.765 r  i_dsp/genblk2[0].i_haze/kp_mult/P[8]
+                         net (fo=15, unplaced)        0.800   190.564    i_dsp/output_direct[0][8]
+                         LUT5 (Prop_lut5_I4_O)        0.124   190.688 r  i_dsp/genblk2[0].i_haze_i_35/O
+                         net (fo=1, unplaced)         0.665   191.353    i_dsp/genblk2[0].i_haze_i_35_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   191.477 r  i_dsp/genblk2[0].i_haze_i_6/O
+                         net (fo=1, unplaced)         0.800   192.277    i_dsp/genblk2[0].i_haze/dat_i[8]
+                         DSP48E1 (Prop_dsp48e1_A[8]_P[10])
+                                                      3.841   196.118 r  i_dsp/genblk2[0].i_haze/kp_mult/P[10]
+                         net (fo=15, unplaced)        0.800   196.918    i_dsp/output_direct[0][10]
+                         LUT5 (Prop_lut5_I4_O)        0.124   197.042 r  i_dsp/genblk2[2].i_haze_i_29/O
+                         net (fo=1, unplaced)         0.665   197.707    i_dsp/genblk2[2].i_haze_i_29_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   197.831 r  i_dsp/genblk2[2].i_haze_i_4/O
+                         net (fo=1, unplaced)         0.800   198.631    i_dsp/genblk2[2].i_haze/dat_i[10]
+                         DSP48E1 (Prop_dsp48e1_A[10]_P[10])
+                                                      3.841   202.472 r  i_dsp/genblk2[2].i_haze/kp_mult/P[10]
+                         net (fo=15, unplaced)        0.800   203.272    i_dsp/output_direct[2][10]
+                         LUT5 (Prop_lut5_I3_O)        0.124   203.396 r  i_dsp/genblk2[0].i_haze_i_32/O
+                         net (fo=1, unplaced)         0.665   204.061    i_dsp/genblk2[0].i_haze_i_32_n_0
+                         LUT6 (Prop_lut6_I5_O)        0.124   204.185 r  i_dsp/genblk2[0].i_haze_i_4/O
+                         net (fo=1, unplaced)         0.800   204.985    i_dsp/genblk2[0].i_haze/dat_i[10]
+                         DSP48E1 (Prop_dsp48e1_A[10]_P[11])
+                                                      3.841   208.826 r  i_dsp/genblk2[0].i_haze/kp_mult/P[11]
+                         net (fo=15, unplaced)        0.800   209.625    i_dsp/output_direct[0][11]
+                         LUT5 (Prop_lut5_I4_O)        0.124   209.749 r  i_dsp/genblk2[2].i_haze_i_25/O
+                         net (fo=1, unplaced)         0.665   210.414    i_dsp/genblk2[2].i_haze_i_25_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   210.538 r  i_dsp/genblk2[2].i_haze_i_3/O
+                         net (fo=1, unplaced)         0.800   211.338    i_dsp/genblk2[2].i_haze/dat_i[11]
+                         DSP48E1 (Prop_dsp48e1_A[11]_P[11])
+                                                      3.841   215.179 r  i_dsp/genblk2[2].i_haze/kp_mult/P[11]
+                         net (fo=15, unplaced)        0.800   215.979    i_dsp/output_direct[2][11]
+                         LUT5 (Prop_lut5_I0_O)        0.124   216.103 r  i_dsp/genblk2[1].i_haze_i_69/O
+                         net (fo=1, unplaced)         0.000   216.103    i_dsp/genblk2[1].i_haze_i_69_n_0
+                         MUXF7 (Prop_muxf7_I0_O)      0.238   216.341 r  i_dsp/genblk2[1].i_haze_i_25/O
+                         net (fo=1, unplaced)         0.422   216.763    i_dsp/genblk2[1].i_haze_i_25_n_0
+                         LUT3 (Prop_lut3_I1_O)        0.298   217.061 r  i_dsp/genblk2[1].i_haze_i_3/O
+                         net (fo=1, unplaced)         0.800   217.861    i_dsp/genblk2[1].i_haze/dat_i[11]
+                         DSP48E1 (Prop_dsp48e1_A[11]_P[10])
+                                                      3.841   221.702 r  i_dsp/genblk2[1].i_haze/kp_mult/P[10]
+                         net (fo=13, unplaced)        0.800   222.502    i_dsp/output_direct[1][10]
+                         LUT5 (Prop_lut5_I2_O)        0.124   222.626 r  i_dsp/genblk2[1].i_haze_i_27/O
+                         net (fo=1, unplaced)         0.665   223.291    i_dsp/genblk2[1].i_haze_i_27_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   223.415 r  i_dsp/genblk2[1].i_haze_i_4/O
+                         net (fo=1, unplaced)         0.800   224.215    i_dsp/genblk2[1].i_haze/dat_i[10]
+                         DSP48E1 (Prop_dsp48e1_A[10]_P[11])
+                                                      3.841   228.056 r  i_dsp/genblk2[1].i_haze/kp_mult/P[11]
+                         net (fo=13, unplaced)        0.800   228.855    i_dsp/output_direct[1][11]
+                         LUT5 (Prop_lut5_I2_O)        0.124   228.979 r  i_dsp/genblk2[0].i_haze_i_25/O
+                         net (fo=1, unplaced)         0.665   229.644    i_dsp/genblk2[0].i_haze_i_25_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   229.768 r  i_dsp/genblk2[0].i_haze_i_3/O
+                         net (fo=1, unplaced)         0.800   230.568    i_dsp/genblk2[0].i_haze/dat_i[11]
+                         DSP48E1 (Prop_dsp48e1_A[11]_P[12])
+                                                      3.841   234.409 r  i_dsp/genblk2[0].i_haze/kp_mult/P[12]
+                         net (fo=15, unplaced)        0.800   235.209    i_dsp/output_direct[0][12]
+                         LUT5 (Prop_lut5_I4_O)        0.124   235.333 r  i_dsp/genblk2[2].i_haze_i_21/O
+                         net (fo=1, unplaced)         0.665   235.998    i_dsp/genblk2[2].i_haze_i_21_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   236.122 r  i_dsp/genblk2[2].i_haze_i_2/O
+                         net (fo=1, unplaced)         0.800   236.922    i_dsp/genblk2[2].i_haze/dat_i[12]
+                         DSP48E1 (Prop_dsp48e1_A[12]_P[12])
+                                                      3.841   240.763 r  i_dsp/genblk2[2].i_haze/kp_mult/P[12]
+                         net (fo=15, unplaced)        0.800   241.563    i_dsp/output_direct[2][12]
+                         LUT5 (Prop_lut5_I0_O)        0.124   241.687 r  i_dsp/genblk2[1].i_haze_i_21/O
+                         net (fo=1, unplaced)         0.665   242.352    i_dsp/genblk2[1].i_haze_i_21_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   242.476 r  i_dsp/genblk2[1].i_haze_i_2/O
+                         net (fo=1, unplaced)         0.800   243.276    i_dsp/genblk2[1].i_haze/dat_i[12]
+                         DSP48E1 (Prop_dsp48e1_A[12]_P[12])
+                                                      3.841   247.117 r  i_dsp/genblk2[1].i_haze/kp_mult/P[12]
+                         net (fo=13, unplaced)        0.800   247.917    i_dsp/output_direct[1][12]
+                         LUT5 (Prop_lut5_I2_O)        0.124   248.041 r  i_dsp/genblk2[0].i_haze_i_21/O
+                         net (fo=1, unplaced)         0.665   248.706    i_dsp/genblk2[0].i_haze_i_21_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   248.830 r  i_dsp/genblk2[0].i_haze_i_2/O
+                         net (fo=1, unplaced)         0.800   249.629    i_dsp/genblk2[0].i_haze/dat_i[12]
+                         DSP48E1 (Prop_dsp48e1_A[12]_P[13])
+                                                      3.841   253.470 r  i_dsp/genblk2[0].i_haze/kp_mult/P[13]
+                         net (fo=29, unplaced)        0.800   254.270    i_dsp/output_direct[0][13]
+                         LUT5 (Prop_lut5_I4_O)        0.124   254.394 r  i_dsp/genblk2[2].i_haze_i_17/O
+                         net (fo=1, unplaced)         0.665   255.059    i_dsp/genblk2[2].i_haze_i_17_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   255.183 r  i_dsp/genblk2[2].i_haze_i_1/O
+                         net (fo=17, unplaced)        0.800   255.983    i_dsp/genblk2[2].i_haze/dat_i[13]
+                         DSP48E1 (Prop_dsp48e1_A[29]_P[13])
+                                                      3.841   259.824 r  i_dsp/genblk2[2].i_haze/kp_mult/P[13]
+                         net (fo=29, unplaced)        0.800   260.624    i_dsp/output_direct[2][13]
+                         LUT5 (Prop_lut5_I0_O)        0.124   260.748 r  i_dsp/genblk2[1].i_haze_i_17/O
+                         net (fo=1, unplaced)         0.665   261.413    i_dsp/genblk2[1].i_haze_i_17_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   261.537 r  i_dsp/genblk2[1].i_haze_i_1/O
+                         net (fo=17, unplaced)        0.800   262.337    i_dsp/genblk2[1].i_haze/dat_i[13]
+                         DSP48E1 (Prop_dsp48e1_A[29]_P[13])
+                                                      3.841   266.178 r  i_dsp/genblk2[1].i_haze/kp_mult/P[13]
+                         net (fo=21, unplaced)        0.800   266.978    i_dsp/output_direct[1][13]
+                         LUT5 (Prop_lut5_I2_O)        0.124   267.102 r  i_dsp/genblk2[0].i_haze_i_17/O
+                         net (fo=1, unplaced)         0.665   267.767    i_dsp/genblk2[0].i_haze_i_17_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124   267.891 r  i_dsp/genblk2[0].i_haze_i_1/O
+                         net (fo=17, unplaced)        0.800   268.691    i_dsp/genblk2[0].i_haze/dat_i[13]
+                         DSP48E1 (Prop_dsp48e1_A[29]_P[9])
+                                                      3.841   272.532 r  i_dsp/genblk2[0].i_haze/kp_mult/P[9]
+                         net (fo=15, unplaced)        0.800   273.331    i_dsp/output_direct[0][9]
+                         LUT5 (Prop_lut5_I4_O)        0.124   273.455 r  i_dsp/genblk3[5].iq_i_61/O
+                         net (fo=1, unplaced)         0.000   273.455    i_dsp/genblk3[5].iq_i_61_n_0
+                         MUXF7 (Prop_muxf7_I0_O)      0.238   273.693 r  i_dsp/genblk3[5].iq_i_25/O
+                         net (fo=1, unplaced)         0.000   273.693    i_dsp/genblk3[5].iq_i_25_n_0
+                         MUXF8 (Prop_muxf8_I0_O)      0.104   273.797 r  i_dsp/genblk3[5].iq_i_5/O
+                         net (fo=3, unplaced)         0.330   274.127    i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/signal_i[9]
+                         LUT2 (Prop_lut2_I0_O)        0.319   274.446 r  i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta[11]_i_4/O
+                         net (fo=1, unplaced)         0.000   274.446    i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta[11]_i_4_n_0
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550   274.996 r  i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000   274.996    i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[11]_i_1_n_0
+                         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.256   275.252 r  i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[35]_i_2/O[2]
+                         net (fo=22, unplaced)        0.399   275.651    i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta0[35]
+                         FDRE                                         r  i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[15]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock pll_adc_clk rise edge)
@@ -326,17 +629,16 @@ Slack (VIOLATED) :        -4.175ns  (required time - arrival time)
                                                       0.084     9.463 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.760    10.223    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.091    10.314 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.655    10.969    i_dsp/genblk5[7].iq_2_outputs/modulator/clk_i
-                         DSP48E1                                      r  i_dsp/genblk5[7].iq_2_outputs/modulator/secondproduct1/CLK
+                         net (fo=7498, unplaced)      0.655    10.969    i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/clk_i
+                         FDRE                                         r  i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[15]/C
                          clock pessimism              0.243    11.212    
                          clock uncertainty           -0.069    11.143    
-                         DSP48E1 (Setup_dsp48e1_CLK_D[0])
-                                                     -1.626     9.517    i_dsp/genblk5[7].iq_2_outputs/modulator/secondproduct1
+                         FDRE (Setup_fdre_C_D)       -0.241    10.902    i_dsp/genblk3[5].iq/inputfilter/genblk2[0].lpf/delta_reg[15]
   -------------------------------------------------------------------
-                         required time                          9.517    
-                         arrival time                         -13.692    
+                         required time                         10.902    
+                         arrival time                        -275.652    
   -------------------------------------------------------------------
-                         slack                                 -4.175    
+                         slack                               -264.750    
 
 
 
@@ -371,7 +673,7 @@ Slack (MET) :             0.074ns  (arrival time - required time)
                                                       0.051     0.566 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.337     0.904    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.026     0.930 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.210     1.140    i_asg/ch[0]/dac_clk_i
+                         net (fo=7498, unplaced)      0.210     1.140    i_asg/ch[0]/dac_clk_i
                          FDRE                                         r  i_asg/ch[0]/ext_trig_debn_reg[17]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.141     1.281 r  i_asg/ch[0]/ext_trig_debn_reg[17]/Q
@@ -392,7 +694,7 @@ Slack (MET) :             0.074ns  (arrival time - required time)
                                                       0.054     0.746 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.355     1.101    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.029     1.130 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.355     1.485    i_asg/ch[0]/dac_clk_i
+                         net (fo=7498, unplaced)      0.355     1.485    i_asg/ch[0]/dac_clk_i
                          FDRE                                         r  i_asg/ch[0]/ext_trig_debn_reg[18]/C
                          clock pessimism             -0.200     1.285    
                          FDRE (Hold_fdre_C_D)         0.105     1.390    i_asg/ch[0]/ext_trig_debn_reg[18]
@@ -414,7 +716,7 @@ Period(ns):         8.000
 Sources:            { pll/pll/CLKOUT0 }
 
 Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
-Min Period        n/a     DSP48E1/CLK        n/a            3.884         8.000       4.116                i_dsp/genblk3[4].i_haze/kp_mult1/CLK
+Min Period        n/a     DSP48E1/CLK        n/a            3.687         8.000       4.313                i_dsp/genblk3[5].iq/demodulator/product2_reg/CLK
 Max Period        n/a     PLLE2_ADV/CLKOUT0  n/a            160.000       8.000       152.000              pll/pll/CLKOUT0
 Low Pulse Width   Fast    RAMD32/CLK         n/a            1.250         4.000       2.750                i_ps/axi_master[0]/axi_awfifo_reg_0_15_30_35/RAMA/CLK
 High Pulse Width  Slow    RAMD32/CLK         n/a            1.250         4.000       2.750                i_ps/axi_master[0]/axi_awfifo_reg_0_15_30_35/RAMA/CLK
@@ -1074,7 +1376,7 @@ Slack (MET) :             5.085ns  (required time - arrival time)
                                                       0.051     8.566 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.337     8.904    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.026     8.930 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.210     9.140    adc_clk
+                         net (fo=7498, unplaced)      0.210     9.140    adc_clk
     ILOGIC_X0Y33         FDRE                                         r  adc_dat_a_reg[5]/C
                          clock pessimism              0.000     9.140    
                          clock uncertainty           -0.166     8.974    
@@ -1132,7 +1434,7 @@ Slack (MET) :             0.490ns  (arrival time - required time)
                                                       0.089     1.656 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.800     2.456    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.101     2.557 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.800     3.357    adc_clk
+                         net (fo=7498, unplaced)      0.800     3.357    adc_clk
     ILOGIC_X0Y1          FDRE                                         r  adc_dat_b_reg[1]/C
                          clock pessimism              0.000     3.357    
                          clock uncertainty            0.166     3.523    
@@ -1151,14 +1453,14 @@ Slack (MET) :             0.490ns  (arrival time - required time)
 From Clock:  pll_adc_clk
   To Clock:  pll_dac_clk_1x
 
-Setup :            0  Failing Endpoints,  Worst Slack        5.305ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        5.306ns,  Total Violation        0.000ns
 Hold  :            2  Failing Endpoints,  Worst Slack       -0.027ns,  Total Violation       -0.054ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             5.305ns  (required time - arrival time)
+Slack (MET) :             5.306ns  (required time - arrival time)
   Source:                 i_dsp/sum1_reg[10]/C
                             (rising edge-triggered cell FDRE clocked by pll_adc_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            dac_dat_a_reg[10]/D
@@ -1166,7 +1468,7 @@ Slack (MET) :             5.305ns  (required time - arrival time)
   Path Group:             pll_dac_clk_1x
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (pll_dac_clk_1x rise@8.000ns - pll_adc_clk rise@0.000ns)
-  Data Path Delay:        2.340ns  (logic 0.875ns (37.393%)  route 1.465ns (62.607%))
+  Data Path Delay:        2.339ns  (logic 0.875ns (37.409%)  route 1.464ns (62.591%))
   Logic Levels:           2  (LUT1=1 LUT6=1)
   Clock Path Skew:        -0.195ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    2.969ns = ( 10.969 - 8.000 ) 
@@ -1189,15 +1491,15 @@ Slack (MET) :             5.305ns  (required time - arrival time)
                                                       0.089     1.656 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.800     2.456    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.101     2.557 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.800     3.357    i_dsp/clk_i
+                         net (fo=7498, unplaced)      0.800     3.357    i_dsp/clk_i
                          FDRE                                         r  i_dsp/sum1_reg[10]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.456     3.813 f  i_dsp/sum1_reg[10]/Q
                          net (fo=1, unplaced)         0.965     4.778    i_dsp/dac_saturate[0]/input_i[10]
                          LUT6 (Prop_lut6_I0_O)        0.295     5.073 f  i_dsp/dac_saturate[0]/output_o[10]_INST_0/O
-                         net (fo=14, unplaced)        0.500     5.573    dac_a[10]
-                         LUT1 (Prop_lut1_I0_O)        0.124     5.697 r  dac_dat_a[10]_i_1/O
-                         net (fo=1, unplaced)         0.000     5.697    dac_dat_a[10]_i_1_n_0
+                         net (fo=13, unplaced)        0.499     5.572    dac_a[10]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.696 r  dac_dat_a[10]_i_1/O
+                         net (fo=1, unplaced)         0.000     5.696    dac_dat_a[10]_i_1_n_0
                          FDRE                                         r  dac_dat_a_reg[10]/D
   -------------------------------------------------------------------    -------------------
 
@@ -1218,9 +1520,9 @@ Slack (MET) :             5.305ns  (required time - arrival time)
                          FDRE (Setup_fdre_C_D)        0.029    11.002    dac_dat_a_reg[10]
   -------------------------------------------------------------------
                          required time                         11.002    
-                         arrival time                          -5.697    
+                         arrival time                          -5.696    
   -------------------------------------------------------------------
-                         slack                                  5.305    
+                         slack                                  5.306    
 
 
 
@@ -1236,7 +1538,7 @@ Slack (VIOLATED) :        -0.027ns  (arrival time - required time)
   Path Group:             pll_dac_clk_1x
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (pll_dac_clk_1x rise@0.000ns - pll_adc_clk rise@0.000ns)
-  Data Path Delay:        0.311ns  (logic 0.141ns (45.356%)  route 0.170ns (54.644%))
+  Data Path Delay:        0.310ns  (logic 0.141ns (45.418%)  route 0.169ns (54.582%))
   Logic Levels:           0  
   Clock Path Skew:        0.166ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    1.485ns
@@ -1259,11 +1561,11 @@ Slack (VIOLATED) :        -0.027ns  (arrival time - required time)
                                                       0.051     0.566 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.337     0.904    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.026     0.930 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.210     1.140    i_dsp/clk_i
+                         net (fo=7498, unplaced)      0.210     1.140    i_dsp/clk_i
                          FDRE                                         r  i_dsp/sum1_reg[17]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.141     1.281 r  i_dsp/sum1_reg[17]/Q
-                         net (fo=28, unplaced)        0.170     1.450    dac_a[13]
+                         net (fo=27, unplaced)        0.169     1.450    dac_a[13]
                          FDRE                                         r  dac_dat_a_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
@@ -1334,7 +1636,7 @@ Slack (MET) :             2.077ns  (required time - arrival time)
                                                       0.089     1.656 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.800     2.456    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.101     2.557 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.800     3.357    i_ams/clk_i
+                         net (fo=7498, unplaced)      0.800     3.357    i_ams/clk_i
                          FDRE                                         r  i_ams/dac_a_o_reg[14]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.456     3.813 r  i_ams/dac_a_o_reg[14]/Q
@@ -1402,7 +1704,7 @@ Slack (VIOLATED) :        -0.071ns  (arrival time - required time)
                                                       0.051     0.566 r  pll/pll/CLKOUT0
                          net (fo=1, unplaced)         0.337     0.904    pll_adc_clk
                          BUFG (Prop_bufg_I_O)         0.026     0.930 r  bufg_adc_clk/O
-                         net (fo=6958, unplaced)      0.210     1.140    i_ams/clk_i
+                         net (fo=7498, unplaced)      0.210     1.140    i_ams/clk_i
                          FDRE                                         r  i_ams/dac_a_o_reg[0]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.141     1.281 r  i_ams/dac_a_o_reg[0]/Q

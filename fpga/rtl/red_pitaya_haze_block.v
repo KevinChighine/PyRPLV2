@@ -54,8 +54,6 @@ module red_pitaya_haze_block #(
    input                 clk_i           ,  // clock
    input                 rstn_i          ,  // reset - active low
    input      [ 14-1: 0] dat_i           ,  // input data
-   input      [ 14-1: 0] adc_a_i         ,  // ADC data CHA
-   input      [ 14-1: 0] adc_b_i         ,  // ADC data CHB
    output     [ 14-1: 0] dat_o           ,  // output data
 
 
@@ -69,7 +67,6 @@ module red_pitaya_haze_block #(
 );
 
 reg [ GAINBITS-1: 0] set_kp;
-reg [ GAINBITS-1: 0] set_kp2;
 
 //  System bus connection
 always @(posedge clk_i) begin
@@ -93,8 +90,8 @@ always @(posedge clk_i) begin
    end
 end
 
-reg signed [ 14-1:0] kp_reg        ;
-wire  [15+GAINBITS-1: 0] kp_mult1       ;
+reg  [15+GAINBITS-PSR-1: 0] kp_reg   ;
+wire  [15+GAINBITS-1: 0] kp_mult   ;
 
 
 always @(posedge clk_i) begin
@@ -102,14 +99,12 @@ always @(posedge clk_i) begin
       kp_reg  <= {15+GAINBITS-PSR{1'b0}};
    end
    else begin
-      kp_reg <= kp_mult1[15+GAINBITS-1:PSR];
+      kp_reg <= kp_mult[15+GAINBITS-1:PSR];
    end
+
 end
 
-assign kp_mult1 = $signed(dat_i) * $signed(set_kp);
-
-assign dat_o = kp_mult1;
-
-
+assign kp_mult = $signed(dat_i) * $signed(set_kp);
+assign dat_o = kp_mult;
 
 endmodule
