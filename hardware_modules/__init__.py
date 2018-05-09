@@ -24,8 +24,9 @@ from .dsp import DspModule, DSP_INPUTS, all_inputs, all_output_directs, \
     dsp_addr_base, InputSelectProperty, InputSelectRegister
 from .filter import FilterModule
 from .hk import HK
+from .haze import Haze
 from .scope import Scope
-from .asg import Asg0, Asg1
+from .asg import Asg0, Asg1#, Asg2, Asg3
 from .pid import Pid
 from .sampler import Sampler
 from .pwm import Pwm

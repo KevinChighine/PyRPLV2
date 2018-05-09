@@ -109,7 +109,7 @@ class Iq(FilterModule):
                           and demodulation [degrees]")
 
     frequency = FrequencyRegister(0x108, bits=_PHASEBITS,
-                                  doc="frequency of iq demodulation [Hz]")
+                                  doc="frequency of iq demodulation [Hz] toto")
 
     _g1 = GainRegister(0x110, bits=_GAINBITS, norm=2 ** _SHIFTBITS,
                         doc="gain1 of iq module [volts]")
