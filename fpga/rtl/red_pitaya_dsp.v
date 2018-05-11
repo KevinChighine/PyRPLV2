@@ -108,17 +108,17 @@ localparam LOG_MODULES = 4;// ceil(log2(EXTRAINPUTS+EXTRAOUTPUTS+MODULES))
 //Module numbers
 localparam PID0  = 'd0; //formerly PID11
 localparam PID1  = 'd1; //formerly PID12: input2->output1
-localparam PID2  = 'd2; //formerly PID21: input1->output2
-localparam PID3  = 'd3; //formerly HAZE
-localparam HAZE0 = 'd0; //formerly HAZE
-localparam HAZE1 = 'd1; //formerly HAZE
-localparam HAZE2 = 'd2; //formerly HAZE
-localparam HAZE3 = 'd3; //formerly HAZE
+// localparam PID2  = 'd2; //formerly PID21: input1->output2
+// localparam PID3  = 'd3; //formerly HAZE
+localparam HAZE0 = 'd2; //formerly HAZE
+localparam HAZE1 = 'd3; //formerly HAZE
+localparam HAZE2 = 'd4; //formerly HAZE
+localparam HAZE3 = 'd5; //formerly HAZE
 //localparam TRIG  = 'd3; //formerly PID3
-localparam IIR   = 'd4; //IIR filter to connect in series to PID module
-localparam IQ0   = 'd5; //for PDH signal generation
-localparam IQ1   = 'd6; //for NA functionality
-localparam IQ2   = 'd7; //for PFD error signal
+//localparam IIR   = 'd4; //IIR filter to connect in series to PID module
+localparam IQ0   = 'd6; //for PDH signal generation
+localparam IQ1   = 'd7; //for NA functionality
+localparam IQ2   = 'd8; //for PFD error signal
 //localparam CUSTOM1 = 'd8; //available slots
 localparam NONE  = 2**LOG_MODULES-1; //code for no module; only used to switch off PWM outputs
 
@@ -273,14 +273,14 @@ always @(posedge clk_i) begin
       input_select [PID1] <= ADC1;
       output_select[PID1] <= OFF;
 
-      input_select [PID2] <= ADC1;
-      output_select[PID2] <= OFF;
+      // input_select [PID2] <= ADC1;
+      // output_select[PID2] <= OFF;
 
-      input_select [PID3] <= ADC1;
-      output_select[PID3] <= OFF;
+      // input_select [PID3] <= ADC1;
+      // output_select[PID3] <= OFF;
 
-      input_select [IIR] <= ADC1;
-      output_select[IIR] <= OFF;
+      //input_select [IIR] <= ADC1;
+      //output_select[IIR] <= OFF;
 	  
       input_select [IQ0] <= ADC1;
       output_select[IQ0] <= OFF;
@@ -332,7 +332,7 @@ end
  *********************************************/
 
 //PID
-generate for (j = 0; j < 3; j = j+1) begin
+generate for (j = 0; j < 2; j = j+1) begin
    red_pitaya_pid_block i_pid (
      // data
      .clk_i        (  clk_i          ),  // clock
@@ -354,7 +354,7 @@ end endgenerate
 
 
 // HAZE with two inputs, but only one module -> leaving out j=4 in module number, since its slots are connected to haze at j=3
-generate for (j = 0; j < 3; j = j+1) begin
+generate for (j = 2; j < 6; j = j+1) begin
     red_pitaya_haze_block i_haze
       (
          // data
@@ -406,9 +406,12 @@ end
 endgenerate
 assign trig_o = trig_signal;
 */
+/*
 //IIR module
 generate for (j = 4; j < 5; j = j+1) begin
-    red_pitaya_iir_block iir (
+    red_pitaya_iir_block 
+      iir 
+      (
 	     // data
 	     .clk_i        (  clk_i          ),  // clock
 	     .rstn_i       (  rstn_i         ),  // reset - active low
@@ -424,10 +427,10 @@ generate for (j = 4; j < 5; j = j+1) begin
       );
 	  assign output_signal[j] = output_direct[j];
 end endgenerate
-
+*/
 
 //IQ modules
-generate for (j = 5; j < 7; j = j+1) begin
+generate for (j = 6; j < 8; j = j+1) begin
     red_pitaya_iq_block
       iq
       (
@@ -453,7 +456,7 @@ generate for (j = 5; j < 7; j = j+1) begin
 end endgenerate
 
 // IQ with two outputs
-generate for (j = 7; j < 8; j = j+1) begin
+generate for (j = 8; j < 9; j = j+1) begin
     red_pitaya_iq_block   #( .QUADRATUREFILTERSTAGES(4) )
       iq_2_outputs
       (
