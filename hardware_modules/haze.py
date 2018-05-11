@@ -42,9 +42,9 @@ class Haze(FilterModule):  # same as DspModule
     #output_signal = SelectRegister(0x10C, options=_output_signals,
     #                doc="Signal to send back to DSP multiplexer")
 
-    #input = InputSelectRegister(0x0, # this way of writing ensures that both haze modules get the same
-    #                             options=all_inputs,
-    #                             doc="selects the input signal 1 of the module")
+    input = InputSelectRegister(0x0, # this way of writing ensures that both haze modules get the same
+                                 options=all_inputs,
+                                 doc="selects the input signal 1 of the module")
 
 
     _PSR = 12  # Register(0x200)
