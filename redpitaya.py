@@ -56,14 +56,14 @@ defaultparameters = dict(
     serverdirname = "//opt//pyrpl//",  # server directory for server app and bitfile
     leds_off=True,  # turn off all GPIO lets at startup (improves analog performance)
     frequency_correction=1.0,  # actual FPGA frequency is 125 MHz * frequency_correction
-    timeout=1,  # timeout in seconds for ssh communication
+    timeout=1,  # timeout in seconds for ssh communicationS
     monitor_server_name='monitor_server',  # name of the server program on redpitaya
     silence_env=False)  # suppress all environment variables that may override the configuration?
 
 
 class RedPitaya(object):
     cls_modules = [rp.HK, rp.AMS, rp.Scope, rp.Sampler,  rp.Asg0, rp.Asg1] + \
-                   [rp.Pwm] * 2 + [rp.Iq] * 3 + [rp.Pid] * 2  + [rp.Haze] * 4  + [rp.IIR] #+[rp.Trig]
+                   [rp.Pwm] * 2 + [rp.Iq] * 3 + [rp.Pid] * 4 + [rp.IIR] #+[rp.Trig]
 
     def __init__(self, config=None,  # configfile is needed to store parameters. None simulates one
                  **kwargs):
