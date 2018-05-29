@@ -110,7 +110,7 @@ localparam PID0  = 'd0; //formerly PID11
 localparam PID1  = 'd1; //formerly PID12: input2->output1
 localparam PID2  = 'd2; //formerly PID21: input1->output2
 localparam PID3  = 'd3; //formerly HAZE
-localparam PID4  = 'd4; //formerly HAZE
+// localparam PID4  = 'd4; //formerly HAZE
 
 // localparam HAZE0 = 'd2; //formerly HAZE
 // localparam HAZE1 = 'd3; //formerly HAZE
@@ -281,11 +281,8 @@ always @(posedge clk_i) begin
       input_select [PID3] <= ADC1;
       output_select[PID3] <= OFF;
 	  
-	  input_select [PID4] <= ADC1;
-      output_select[PID4] <= OFF;
+
       
-
-
       //input_select [IIR] <= ADC1;
       //output_select[IIR] <= OFF;
 	  
